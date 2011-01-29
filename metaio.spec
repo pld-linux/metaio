@@ -6,9 +6,11 @@ License:	GPL v2
 Group:		Libraries
 Source0:	https://www.lsc-group.phys.uwm.edu/daswg/download/software/source/%{name}-%{version}.tar.gz
 # Source0-md5:	73e39625d7c6f7e4316ac257d82a8d9b
-BuildRequires:	make
-BuildRequires:	zlib-devel
 URL:		https://www.lsc-group.phys.uwm.edu/daswg/projects/metaio.html
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
