@@ -1,11 +1,12 @@
 Summary:	This package contains a library for parsing LIGO_LW Table files
 Name:		metaio
-Version:	8.2
+Version:	8.3.0
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	https://www.lsc-group.phys.uwm.edu/daswg/download/software/source/%{name}-%{version}.tar.gz
-# Source0-md5:	73e39625d7c6f7e4316ac257d82a8d9b
+# Source0-md5:	4d244197051fc1c1a9c2c5f82e14dc4c
+Patch0:		format-security.patch
 URL:		https://www.lsc-group.phys.uwm.edu/daswg/projects/metaio.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -38,6 +39,7 @@ Static metaio library.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -65,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS README
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libmetaio.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libmetaio.so.1
 
 %files devel
 %defattr(644,root,root,755)
