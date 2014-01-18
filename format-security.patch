@@ -1,0 +1,22 @@
+--- metaio-8.3.0/src/metaio.c.orig	2014-01-18 13:49:24.428739303 +0100
++++ metaio-8.3.0/src/metaio.c	2014-01-18 13:50:23.651747305 +0100
+@@ -2486,7 +2486,7 @@ int MetaioCreate( const MetaioParseEnv e
+         return status;
+ 
+     /*-- Write out the LIGO_LW header --*/
+-    fprintf( env->file->fp, MetaIO_Header);
++    fputs( MetaIO_Header, env->file->fp);
+ 
+     return 0;
+ }
+--- metaio-8.3.0/src/lwtprint.c.orig	2014-01-18 13:52:24.527772497 +0100
++++ metaio-8.3.0/src/lwtprint.c	2014-01-18 13:53:20.884130507 +0100
+@@ -513,7 +513,7 @@ int main( int argc, char **argv )
+       for ( i=0; i<ncols; i++ ) {
+ 	icol = collist[i];
+ 	if ( i > 0 )
+-          printf( delim );
++          fputs( delim, stdout );
+ 	if ( icol == PSEUDOCOL_ROW )
+ 	  fprintf( stdout, "%d", irow );
+ 	else
