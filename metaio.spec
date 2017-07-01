@@ -1,41 +1,57 @@
-Summary:	This package contains a library for parsing LIGO_LW Table files
+# TODO: matlab (octave?)
+Summary:	Library for parsing LIGO_LW Table files
+Summary(pl.UTF-8):	Biblioteka do analizy plików tablic LIGO_LW
 Name:		metaio
-Version:	8.3.0
-Release:	2
-License:	GPL v2
+Version:	8.4.0
+Release:	1
+License:	GPL v2+
 Group:		Libraries
-Source0:	https://www.lsc-group.phys.uwm.edu/daswg/download/software/source/%{name}-%{version}.tar.gz
-# Source0-md5:	4d244197051fc1c1a9c2c5f82e14dc4c
+Source0:	http://software.ligo.org/lscsoft/source/%{name}-%{version}.tar.gz
+# Source0-md5:	65661cfb47643623bc8cbe97ddbe7b91
 Patch0:		format-security.patch
 URL:		https://www.lsc-group.phys.uwm.edu/daswg/projects/metaio.html
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
-BuildRequires:	libtool
-BuildRequires:	zlib-devel
+BuildRequires:	libtool >= 2:2
+BuildRequires:	zlib-devel >= 1.2
+Requires:	zlib >= 1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains a library for parsing LIGO_LW Table files, plus
 several C programs based on the library, plus a few Tcl scripts which
 do related things. The metiao library can read XML files compressed
-with the gzip compression algorithm. Metaio is available via the
-lscsoft repository, from source of via LIGOtools.
+with the gzip compression algorithm.
+
+%description -l pl.UTF-8
+Ten pakiet zawiera bibliotekę do analizy plików tablic LIGO_LW oraz
+kilka programów w C opartych na tej bibliotece, a także kilka skryptów
+Tcl-a, wykonujących podobne zadania. Biblioteka metaio potrafi czytać
+pliki XML skompresowane algorytmem gzip.
 
 %package devel
-Summary:	Devel files
+Summary:	Header files for metaio library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki metaio
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Development files.
+Header files for metaio library.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki metaio.
 
 %package static
 Summary:	Static metaio library
+Summary(pl.UTF-8):	Statyczna biblioteka metaio
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static metaio library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka metaio.
 
 %prep
 %setup -q
@@ -43,7 +59,7 @@ Static metaio library.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I gnuscripts
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -56,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmetaio.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -64,19 +83,24 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS HISTORY README
+%attr(755,root,root) %{_bindir}/_getMetaLoopHelper
+%attr(755,root,root) %{_bindir}/concatMeta
+%attr(755,root,root) %{_bindir}/lwtcut
+%attr(755,root,root) %{_bindir}/lwtdiff
+%attr(755,root,root) %{_bindir}/lwtprint
+%attr(755,root,root) %{_bindir}/lwtscan
+%attr(755,root,root) %{_bindir}/lwtselect
 %attr(755,root,root) %{_libdir}/libmetaio.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libmetaio.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libmetaio.la
-%{_libdir}/libmetaio.so
+%attr(755,root,root) %{_libdir}/libmetaio.so
 %{_includedir}/ligo_lw_header.h
 %{_includedir}/metaio.h
 %{_pkgconfigdir}/libmetaio.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libmetaio.a
