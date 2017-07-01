@@ -19,15 +19,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains a library for parsing LIGO_LW Table files, plus
-several C programs based on the library, plus a few Tcl scripts which
-do related things. The metiao library can read XML files compressed
-with the gzip compression algorithm.
+several C programs based on the library. The metiao library can read
+XML files compressed with the gzip compression algorithm.
 
 %description -l pl.UTF-8
 Ten pakiet zawiera bibliotekę do analizy plików tablic LIGO_LW oraz
-kilka programów w C opartych na tej bibliotece, a także kilka skryptów
-Tcl-a, wykonujących podobne zadania. Biblioteka metaio potrafi czytać
-pliki XML skompresowane algorytmem gzip.
+kilka programów w C opartych na tej bibliotece. Biblioteka metaio
+potrafi czytać pliki XML skompresowane algorytmem gzip.
 
 %package devel
 Summary:	Header files for metaio library
