@@ -1,0 +1,10 @@
+--- metaio-8.4.0/src/metaio.h~	2012-11-08 18:31:05.000000000 +0100
++++ metaio-8.4.0/src/metaio.h	2019-11-03 21:47:59.122233691 +0100
+@@ -73,6 +73,7 @@
+  *   file.
+  */
+ 
++#include <stdio.h>
+ #include <complex.h>
+ #include <setjmp.h>
+ 
