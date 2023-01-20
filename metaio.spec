@@ -2,17 +2,16 @@
 Summary:	Library for parsing LIGO_LW Table files
 Summary(pl.UTF-8):	Biblioteka do analizy plików tablic LIGO_LW
 Name:		metaio
-Version:	8.4.0
-Release:	2
+Version:	8.5.1
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://software.ligo.org/lscsoft/source/%{name}-%{version}.tar.gz
-# Source0-md5:	65661cfb47643623bc8cbe97ddbe7b91
+Source0:	http://software.igwn.org/lscsoft/source/%{name}-%{version}.tar.gz
+# Source0-md5:	ba697ca9f77d80bf111c531a0f53e5fb
 Patch0:		format-security.patch
-Patch1:		missing-types.patch
-URL:		https://www.lsc-group.phys.uwm.edu/daswg/projects/metaio.html
+URL:		https://wiki.ligo.org/Computing/DASWG/MetaIO
 BuildRequires:	autoconf >= 2.69
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	libtool >= 2:2
 BuildRequires:	zlib-devel >= 1.2
 Requires:	zlib >= 1.2
@@ -55,7 +54,6 @@ Statyczna biblioteka metaio.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
