@@ -9,7 +9,7 @@ Group:		Libraries
 Source0:	http://software.igwn.org/lscsoft/source/%{name}-%{version}.tar.gz
 # Source0-md5:	ba697ca9f77d80bf111c531a0f53e5fb
 Patch0:		format-security.patch
-URL:		https://wiki.ligo.org/Computing/DASWG/MetaIO
+URL:		https://wiki.ligo.org/Computing/MetaIO
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	libtool >= 2:2
